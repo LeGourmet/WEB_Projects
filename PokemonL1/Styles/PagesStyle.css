@@ -1,0 +1,29 @@
+/*************************************************
+* importe les rêgles du doc CommunPagesStyle.css *
+**************************************************/
+@import url("CommunPagesStyle.css") screen;
+
+/************************************************************
+* cible les td suivant un td du dernier tableau de la page *
+*************************************************************/
+h2+table td+td{
+    border: solid 1px black;                /* fixe les bordures en solide de 1 pixels et noir */
+    background: rgba(255, 155, 0, 0.76);    /* fixe la couleur de fond en orange */
+}
+
+/**************************************************************************
+* cible la dernier ligne du dernier tableau de la page sauf le premier td *
+***************************************************************************/
+h2+table tr:last-child td+td{
+    background: rgba(255, 0, 0, 0.75);      /* fixe la couleur de fond en rouge */
+}
+
+/*********************************************************************
+* cible les cases de la première ligne du dernier tableau de la page *
+* et les premère case de chaques ligne du dernier tableau            *
+**********************************************************************/
+h2+table thead tr th, h2+table tbody tr td:first-child{
+    background: grey;                       /* fixe la couleur de fond en gris */
+}
+
+/* Blanchard Allan */

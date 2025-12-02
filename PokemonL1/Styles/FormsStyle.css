@@ -1,0 +1,37 @@
+body{
+     margin: 0;
+     background-color: cadetblue;
+ }
+
+h1{
+    text-align: center;             /* centre le texte */
+    background-color: orange;       /* fixe la couleur de fond en orange */
+    margin: 0;                      /* enlève les marges */
+    line-height: 100px;             /* fixe la taille de la bordure à 100 pixels */
+    border-bottom: solid 2px black; /* fixe la bordure du bas en solid de 2 pixels noir */
+}
+
+fieldset{
+    margin-top: 5px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: lightgray;
+}
+
+legend{
+    /*text-align: center;*/
+    margin-left : auto;
+    margin-right: auto;
+    border: solid black 1px ;
+    background-color: whitesmoke;
+}
+
+fieldset p{
+    margin-left: 20%;
+}
+
+form fieldset:last-child{
+    text-align: center;
+}
+
+/* Blanchard Allan */

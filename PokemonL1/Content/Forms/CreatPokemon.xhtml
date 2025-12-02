@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Creation Pokemon</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="screen" title="default" href="../../Styles/FormsStyle.css"/>
+    <script type="application/javascript" src="../../Javascript/js_pokemon.js"></script>
+</head>
+<body>
+<h1>Information sur le nouveau pokémon</h1>
+<form id="form1" action="http://voca.univ-poitiers.fr/~subrenat/cours_web/traitement.php" method="post">
+    <fieldset>
+        <legend>Caractéristiques</legend>
+        <p>
+            <label for="nom"><strong>Nom : </strong></label>
+            <input id="nom" name="Le nom du pokemon" value="Le nom du pokemon" onfocus="clearInput('nom')" onblur="displayDefault('nom')"/>
+        </p>
+        <p>
+            <label for="Id"><strong>Id : </strong></label>
+            <input id="Id" name="L'id du pokemon" value="L'id du pokemon" onfocus="clearInput('Id')" onblur="displayDefault('Id')"/>
+        </p>
+        <p>
+            <label for="gen"><strong>Génération : </strong></label>
+            <input id="gen" name="La génération du pokemon" value="La génération du pokemon" onfocus="clearInput('gen')" onblur="displayDefault('gen')"/>
+        </p>
+        <p>
+            <label for="notleg"><strong>Pokemon normal </strong></label>
+            <input id="notleg" name="leg" type="radio" checked="checked"/>
+            <label for="leg"><strong>Pokemon légendaire </strong></label>
+            <input id="leg" name="leg" type="radio"/>
+        </p>
+        <p>
+            <label for="type1"><strong>Type1 : </strong></label>
+            <select id="type1" name="none" size="1">
+                <option selected="selected">normal</option>
+                <option>feu</option>
+                <option>eau</option>
+                <option>electrique</option>
+                <option>plante</option>
+                <option>glace</option>
+                <option>combat</option>
+                <option>poison</option>
+                <option>sol</option>
+                <option>vol</option>
+                <option>psy</option>
+                <option>insecte</option>
+                <option>roche</option>
+                <option>spectre</option>
+                <option>dragon</option>
+                <option>tenebre</option>
+                <option>acier</option>
+                <option>fee</option>
+            </select>
+            <label for="type2"><strong>Type2 : </strong></label>
+            <select id="type2" name="none" size="1">
+                <option>normal</option>
+                <option>feu</option>
+                <option>eau</option>
+                <option>electrique</option>
+                <option>plante</option>
+                <option>glace</option>
+                <option>combat</option>
+                <option>poison</option>
+                <option>sol</option>
+                <option>vol</option>
+                <option>psy</option>
+                <option>insecte</option>
+                <option>roche</option>
+                <option>spectre</option>
+                <option>dragon</option>
+                <option>tenebre</option>
+                <option>acier</option>
+                <option>fee</option>
+                <option selected="selected">-</option>
+            </select>
+        </p>
+        <p>
+            <label for="cat"><strong>Categorie : </strong></label>
+            <input id="cat" name="La catégorie du pokemon" value="La catégorie du pokemon" onfocus="clearInput('cat')" onblur="displayDefault('cat')"/>
+        </p>
+        <p>
+            <label for="taille"><strong>Taille : </strong></label>
+            <input id="taille" name="La taille du pokemon" value="La taille du pokemon" onfocus="clearInput('taille')" onblur="displayDefault('taille')"/>
+        </p>
+        <p>
+            <label for="poids"><strong>Poids : </strong></label>
+            <input id="poids" name="Le poids du pokemon" value="Le poids du pokemon" onfocus="clearInput('poids')" onblur="displayDefault('poids')"/>
+        </p>
+        <p>
+            <label for="genre"><strong>Genre : </strong></label>
+            <select id="genre" name="male-femelle" size="1">
+                <option selected="selected">Male-femelle</option>
+                <option>Sans genre</option>
+                <option>Male</option>
+                <option>Femelle</option>
+            </select>
+        </p>
+        <p>
+            <label for="pre"><strong>Pré-évolution : </strong></label>
+            <input id="pre" name="  -" value="  -" onfocus="clearInput('pre')" onblur="displayDefault('pre')"/>
+        </p>
+        <p>
+            <label for="evo"><strong>Evolution : </strong></label>
+            <input id="evo" name="  -" value="  -" onfocus="clearInput('evo')" onblur="displayDefault('evo')"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Autres</legend>
+        <p>
+            <label for="desc"><strong>Description : </strong></label>
+            <textarea id="desc" name="Description du pokemon" rows="2" cols="50" onfocus="clearInput('desc')" onblur="displayDefault('desc')">Description du pokemon</textarea>
+            </p>
+        <p>
+            <label for="abil1"><strong>Abilitées 1 : </strong></label>
+            <textarea id="abil1" name="Description de l'abilitée du pokemon" rows="2" cols="50" onfocus="clearInput('abil1')" onblur="displayDefault('abil1')">Description de l'abilitée du pokemon</textarea>
+        </p>
+        <p>
+            <label for="abil2"><strong>Abilitées 2* : </strong></label>
+            <textarea id="abil2" name="Description de l'abilitée du pokemon" rows="2" cols="50" onfocus="clearInput('abil2')" onblur="displayDefault('abil2')">Description de l'abilitée du pokemon</textarea>
+        </p>
+
+    </fieldset>
+    <fieldset>
+        <legend>Dernière étape</legend>
+        <button type="button" onclick="verifieCreat()">Vérifier</button>
+        <button>Envoyer</button>
+        <button type="reset">Effacer</button>
+    </fieldset>
+</form>
+</body>
+</html>
+        <!-- Blanchard Allan -->

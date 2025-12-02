@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Formulaire Identité</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="screen" title="default" href="../../Styles/FormsStyle.css"/>
+    <script type="application/javascript" src="../../Javascript/js_pokemon.js"></script>
+</head>
+<body>
+    <h1>Identité</h1>
+    <form id="form1" action="http://voca.univ-poitiers.fr/~subrenat/cours_web/traitement.php" method="post">
+        <fieldset>
+            <legend>Informations générales</legend>
+            <p>
+                <label for="nom"><strong>Nom : </strong></label>
+                <input id="nom" name="Votre nom" value="Votre nom" onfocus="clearInput('nom')" onblur="displayDefault('nom')"/>
+            </p>
+            <p>
+                <label for="prenom"><strong>Prenom : </strong></label>
+                <input id="prenom" name="Votre prénom" value="Votre prénom" onfocus="clearInput('prenom')" onblur="displayDefault('prenom')"/>
+            </p>
+            <p>
+                <label for="H"><strong>Homme </strong></label>
+                <input id="H" name="sexe" type="radio" checked="checked" value="H"/>
+                <label for="F"><strong>Femme </strong></label>
+                <input id="F" name="sexe" type="radio" value="F"/>
+            </p>
+            <p>
+                <label for="day"><strong>Date de naissance : </strong></label>
+                <select id="day" name="jour" size="1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                </select>
+                <label for="mounth">/</label>
+                <select id="mounth" name="mois" size="1">
+                    <option>Janvier</option>
+                    <option>Fevrier</option>
+                    <option>Mars</option>
+                    <option>Avril</option>
+                    <option>Mai</option>
+                    <option>Juin</option>
+                    <option>Juillet</option>
+                    <option>Aout</option>
+                    <option>Septembre</option>
+                    <option>Octobre</option>
+                    <option>Novembre</option>
+                    <option>Decembre</option>
+                </select>
+                /
+                <select id="mil" name="part1" size="1">
+                    <option>19</option>
+                    <option>20</option>
+                </select>
+                <select id="year" name="part2" size="1">
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                    <option>32</option>
+                    <option>33</option>
+                    <option>34</option>
+                    <option>35</option>
+                    <option>36</option>
+                    <option>37</option>
+                    <option>38</option>
+                    <option>39</option>
+                    <option>40</option>
+                    <option>41</option>
+                    <option>42</option>
+                    <option>43</option>
+                    <option>44</option>
+                    <option>45</option>
+                    <option>46</option>
+                    <option>47</option>
+                    <option>48</option>
+                    <option>49</option>
+                    <option>50</option>
+                    <option>51</option>
+                    <option>52</option>
+                    <option>53</option>
+                    <option>54</option>
+                    <option>55</option>
+                    <option>56</option>
+                    <option>57</option>
+                    <option>58</option>
+                    <option>59</option>
+                    <option>60</option>
+                    <option>61</option>
+                    <option>72</option>
+                    <option>73</option>
+                    <option>74</option>
+                    <option>75</option>
+                    <option>76</option>
+                    <option>77</option>
+                    <option>78</option>
+                    <option>79</option>
+                    <option>80</option>
+                    <option>81</option>
+                    <option>82</option>
+                    <option>83</option>
+                    <option>84</option>
+                    <option>85</option>
+                    <option>86</option>
+                    <option>87</option>
+                    <option>88</option>
+                    <option>89</option>
+                    <option>90</option>
+                    <option>91</option>
+                    <option>92</option>
+                    <option>93</option>
+                    <option>94</option>
+                    <option>95</option>
+                    <option>96</option>
+                    <option>97</option>
+                    <option>98</option>
+                    <option>99</option>
+                </select>
+            </p>
+            <p>
+                <label for="pays"><strong>Pays : </strong></label>
+                <select id="pays" name="Pays" size="1">
+                    <optgroup label="Afrique">
+                        <option value="AS">Afrique du Sud</option>
+                        <option value="Algerie">Algerie</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Cameroun">Cameroun</option>
+                        <option value="Centrafrique">Centrafrique</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Egypte">Egypte</option>
+                        <option value="Ethiopie">Ethiopie</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Guinee">Guinee</option>
+                        <option value="Lybie">Lybie</option>
+                        <option value="Madagascare">Madagascar</option>
+                        <option value="Malie">Mali</option>
+                        <option value="Maroc">Maroc</option>
+                        <option value="Mauritanie">Mauritanie</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Namibie">Namibie</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="RDC">Republique Democratique du Congo</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Somalie">Somalie</option>
+                        <option value="Soudan">Soudan</option>
+                        <option value="Tanzanie">Tanzanie</option>
+                        <option value="Tchad">Tchad</option>
+                        <option value="Zambie">Zambie</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </optgroup>
+                    <optgroup label="Amerique">
+                        <option value="Argentine">Argentine</option>
+                        <option value="Bolivie">Bolivie</option>
+                        <option value="Bresil">Bresil</option>
+                        <option value="Canada">Canada</option>
+                        <option value="chili">Chili</option>
+                        <option value="Colombie">Colombie</option>
+                        <option value="Equateur">Equateur</option>
+                        <option value="USA">Etats-Unis</option>
+                        <option value="Mexique">Mexique</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Perou">Perou</option>
+                        <option value="Venezuela">Venezuela</option>
+                    </optgroup>
+                    <optgroup label="Asie">
+                        <option value="AS">Arabie Saoudite</option>
+                        <option value="Chine">Chine</option>
+                        <option value="Inde">Inde</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Irak</option>
+                        <option value="Japon">Japon</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Mongolie">Mongolie</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Russie">Russie</option>
+                        <option value="Turquie">Turquie</option>
+                    </optgroup>
+                    <optgroup label="Europe">
+                        <option value="Allemagne">Allemagne</option>
+                        <option value="Autriche">Autriche</option>
+                        <option value="Belgique">Belgique</option>
+                        <option value="Danemark">Danemark</option>
+                        <option value="Espagne">Espagne</option>
+                        <option value="Finlande">Finlande</option>
+                        <option value="France" selected="selected">France</option>
+                        <option value="Grece">Grece</option>
+                        <option value="Irlande">Irlande</option>
+                        <option value="Islande">Islande</option>
+                        <option value="Italie">Italie</option>
+                        <option value="Norvege">Norvege</option>
+                        <option value="Pologne">Pologne</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Roumanie">Roumanie</option>
+                        <option value="UK">Royaume-Unis</option>
+                        <option value="Suede">Suede</option>
+                        <option value="Suisse">Suisse</option>
+                        <option value="Ukraine">Ukraine</option>
+                    </optgroup>
+                    <optgroup label="Oceanie">
+                        <option value="Australie">Australie</option>
+                        <option value="Indonesie">Indonesie</option>
+                        <option value="NZ">Nouvelle-Zelande</option>
+                        <option value="PNG">Papouasie-Nouvelle-Guinee</option>
+                    </optgroup>
+                    <option>Autre</option>
+                </select>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Compte</legend>
+            <p>
+                <label for="pseudo"><strong>Pseudo : </strong></label>
+                <input id="pseudo" name="Votre pseudo" value="Votre pseudo" onfocus="clearInput('pseudo')" onblur="displayDefault('pseudo')"/>
+            </p>
+            <p>
+                <label for="mail"><strong>Mail : </strong></label>
+                <input id="mail" name="Votre adresse mail" value="Votre adresse mail" onfocus="clearInput('mail')" onblur="displayDefault('mail')"/>
+            </p>
+            <p>
+                <label for="user"><strong>Nom d'utilisateur : </strong></label>
+                <input id="user" name="Votre nom d'utilisateur" value="Votre nom d'utilisateur" onfocus="clearInput('user')" onblur="displayDefault('user')"/>
+            </p>
+
+            <p>
+                <label for="password"><strong>Mot de passe : </strong></label>
+                <input id="password" name="Votre mot de passe" value="Votre mot de passe" onfocus="clearInput('password')" onblur="displayDefault('password')"/>
+            </p>
+            <p>
+                <label for="verif"><strong>Verification : </strong></label>
+                <input id="verif" name="Votre mot de passe" value="Votre mot de passe" onfocus="clearInput('verif')" onblur="displayDefault('verif');verifPassword('password','verif')"/>
+            </p>
+            <p>
+                <label for="question"><strong>Question secrète : </strong></label>
+                <select id="question" name="secret" size="1">
+                    <option>Quel est le nom de votre animal de compagnie.</option>
+                    <option>Quel est le nom de jeune fille de votre mère.</option>
+                    <option>Quel est le nom de votre ville préférée.</option>
+                </select>
+            </p>
+            <p>
+                <label for="reponse"><strong>Réponse à votre question secrète : </strong></label>
+                <input id="reponse" name="Votre réponse" value="Votre réponse" onfocus="clearInput('reponse')" onblur="displayDefault('reponse')"/>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Dernière étape</legend>
+            <button type="button" onclick="verifieID()">Vérifier</button>
+            <button>Envoyer</button>
+            <button type="reset">Effacer</button>
+        </fieldset>
+    </form>
+</body>
+</html>
+
+        <!-- Blanchard Allan -->

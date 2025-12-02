@@ -1,0 +1,58 @@
+/*************************************************
+* importe les rêgles du doc CommunPagesStyle.css *
+**************************************************/
+@import url("CommunPagesStyle.css") screen;
+
+/************************************************************
+* cible les td suivant un td du dernier tableau de la page *
+*************************************************************/
+h2+table td+td{
+    border: solid 1px black;    /* fixe les bordures en solide à 1 pixel et noir */
+}
+
+/*********************************************************************
+* cible les cases de la première ligne du dernier tableau de la page *
+* et les premère case de chaques ligne du dernier tableau            *
+**********************************************************************/
+h2+table thead tr th, h2+table tbody tr td:first-child{
+    background: darkgrey;       /* fixe le fond d'écran gris foncé */
+    font-size: 25px;            /* fixe la taille de l'écriture à 25 pixels */
+}
+
+/*****************************************************************************
+* cible les td suivant un td décendant d'un tr du dernier tableau de la page *
+******************************************************************************/
+h2+table tr td+td{
+    background: lightgray;      /* fixe le fond d'écran gris foncé */
+    font-size: 25px;            /* fixe la taille de l'écriture à 25 pixels */
+}
+
+/***************************************
+* cible tous les éléments d'un tableau *
+****************************************/
+h2+table tr:last-child td+td, ul+table tbody tr:first-child, ul+table thead th{
+    font-size: 25px;            /* fixe la taille de l'écriture à 25 pixels */
+}
+
+/*****************************
+* cible tous les éléments h1 *
+******************************/
+h1{
+    font-size: 50px;            /* fixe la taille de l'écriture à 50 pixels */
+}
+
+/*****************************
+* cible tous les éléments h2 *
+******************************/
+h2{
+    font-size: 40px;            /* fixe la taille de l'écriture à 40 pixels */
+}
+
+/**********************************
+* cible tous les éléments ul et p *
+***********************************/
+ul, p{
+    font-size: 30px;            /* fixe la taille de l'écriture à 30 pixels */
+}
+
+/* Blanchard Allan */

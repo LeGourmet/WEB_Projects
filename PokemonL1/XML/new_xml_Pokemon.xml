@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE pokemon SYSTEM "new_dtd_Pokemon.dtd">
+
+<pokemon>
+    <name>Pikachu</name>
+    <caracteristics numeroid="25" generation="1" legendary="non" firsttype="electr" gender="male-female"/>
+    <description>
+        Pikachu est un Pokemon Souris de type Electrik apparu des la premiere generation.
+    </description>
+    <abilitie name="Static">
+        Si un Pokemon utilise une attaque directe (et que celle-ci inflige bien des degats) sur un Pokemon dote de
+        ce talent, il a 30 pourcent de chances d etre paralyse. Contrairement a une idée reçue, Statik atteint les Pokemon
+        de type Sol malgre le fait que la capacite soit generalement detenue par des Pokemon Electrik.
+    </abilitie>
+    <weaknesses acier="0.5"
+                combat="1"
+                dragon="1"
+                eau="1"
+                electr="0.5"
+                feu="1"
+                glace="1"
+                insect="1"
+                normal="1"
+                plante="1"
+                poison="1"
+                psy="1"
+                roche="1"
+                sol="2"
+                spectr="1"
+                tenebr="1"
+                vol="0.5"
+                fee="1"/>
+</pokemon>
+
+<!-- Blanchard Allan -->

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <title>test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="./dat.gui.min.js"></script>
+    <script type="text/javascript" src="./ghost_vertice.js"></script>
+</head>
+<body style="margin: 0;padding: 0;">
+   <script type="module">
+        import * as THREE from "https://threejs.org/build/three.module.js";
+        import { OBJLoader } from 'https://unpkg.com/three/examples/jsm/loaders/OBJLoader.js';
+        import {GLTFLoader} from 'https://unpkg.com/three/examples/jsm/loaders/GLTFLoader';
+
+        var renderer, camera, cameraKrypton,gui;
+        var scene1,scene2;
+
+        var ambientColor = 0x202020;
+        var soucoupe = new THREE.Object3D();
+        var orbitCam = new THREE.Object3D();
+        var orbitArrow = new THREE.Object3D();
+        var star,starLight,uniS,krypton,anneaux,arrow;
+        var tab_orbit = [];
+        var tab_p = [];
+        var go = false;
+        var turn = false;
+        var camView = false;
+        var pos = [0,0];
+        var cam = [0,0];
+
+        var pacman = new THREE.Object3D();
+        var plane,warp,blinky,pinky,inky,clyde;
+        var ghostDir = [[1,0],[1,0],[1,0],[1,0]];
+
+        var lookat;
+
+        var options = {
+            inSpace : true,
+            rotate : true,
+            speed : 0.5,
+            color : 0xee7000,
+            speed_ghost : 3,
+            changeScene : function (){
+                this.inSpace = !this.inSpace;
+                if(this.inSpace){
+                    soucoupe.lookAt(soucoupe.position.x,soucoupe.position.y,soucoupe.position.z-1);
+                    soucoupe.position.set(0,110,6000);
+                    orbitCam.lookAt(soucoupe.position);
+                }else{
+                    pacman.lookAt(pacman.position.x,pacman.position.y,pacman.position.z-1);
+                    pacman.position.set(0,50,400);
+                    orbitCam.lookAt(pacman.position);
+                }
+                orbitCam.quaternion.set(0,1,0,0);
+            },
+            start_stop_rotate : function(){
+              this.rotate = ! this.rotate;
+            }
+        };
+
+        // ********************************************* EVENTS *******************************************
+        window.addEventListener('resize', onWindowResize);
+        document.addEventListener('keydown', onDocumentKeyDown);
+        document.addEventListener ('mousedown', onDocumentMouseDown);
+        document.addEventListener ('mouseup', onDocumentMouseUp);
+        document.addEventListener('wheel', onDocumentWheelRolling);
+        function onDocumentMouseUp(event){
+            if(options.inSpace) {
+                if (event.button === 0) {
+                    turn = false;
+                    document.removeEventListener('mousemove', onDocumentMouseMove);
+                } else {
+                    camView = false;
+                    document.removeEventListener('mousemove', onDocumentMouseMove);
+                    camera.position.x = 0;
+                    camera.position.y = 0;
+                    camera.position.z = 100;
+                    orbitCam.lookAt(soucoupe.position);
+                    orbitCam.quaternion.set(0, 1, 0, 0);
+                }
+            }
+        }
+        function onDocumentMouseDown(event){
+            if(event.target.tagName === "CANVAS") {
+                if(options.inSpace) {
+                    if (event.button === 0) {
+                        turn = true;
+                        document.addEventListener('mousemove', onDocumentMouseMove);
+                    } else {
+                        camView = true;
+                        document.addEventListener('mousemove', onDocumentMouseMove);
+                    }
+                }
+            }
+        }
+        function onDocumentMouseMove(event){
+            const X = window.innerWidth;
+            const Y = window.innerHeight;
+            const a = ((Math.min(Math.max(0, event.clientX), X)) / (X / 2)) - 1;
+            const b = ((Math.min(Math.max(0, event.clientY), Y)) / (Y / 2)) - 1;
+            if(turn) {
+                pos[0] = a;
+                pos[1] = b;
+            }
+            if(camView){
+                cam[0] = a;
+                cam[1] = b;
+            }
+        }
+        function onDocumentKeyDown(event) {
+            const key = event.code;
+            if(options.inSpace) {
+                if (key === "Space") {
+                    go = !go;
+                } else if ((key === "ArrowUp" || key === "KeyW" )&& camera.position.z !== 0) {
+                    camera.translateOnAxis(new THREE.Vector3(0, 0, 1), -50);
+                } else if (key === "ArrowDown" || key === "KeyS") {
+                    camera.translateOnAxis(new THREE.Vector3(0, 0, 1), 50);
+                } else if (key === "ArrowLeft" || key === "KeyA") {
+                    soucoupe.rotateZ(-0.05);
+                } else if (key === "ArrowRight" || key === "KeyD") {
+                    soucoupe.rotateZ(0.05);
+                } else if (key === "KeyR") {
+                    camera.position.z = 0;
+                }
+            }else{
+                var pacmanLookat = pacman.getWorldDirection(new THREE.Vector3(0, 0, 0));
+                if ((key === "KeyW" || key === "ArrowUp")
+                    && (pacman.position.x+(options.speed*pacmanLookat.x))<2500
+                    && (pacman.position.z+(options.speed * pacmanLookat.z))<2500
+                    && (pacman.position.x+(options.speed*pacmanLookat.x))>-2500
+                    && (pacman.position.z+(options.speed*pacmanLookat.z))>-2500) {
+                    pacman.position.x += options.speed * pacmanLookat.x;
+                    pacman.position.z += options.speed * pacmanLookat.z;
+                } else if (key === "KeyA" || key === "ArrowLeft") {
+                    pacman.rotateY(0.04);
+                } else if ((key === "KeyS" || key === "ArrowDown")
+                    && (pacman.position.x-(options.speed*pacmanLookat.x))<2500
+                    && (pacman.position.z-(options.speed * pacmanLookat.z))<2500
+                    && (pacman.position.x-(options.speed*pacmanLookat.x))>-2500
+                    && (pacman.position.z-(options.speed*pacmanLookat.z))>-2500) {
+                    pacman.position.x -= options.speed * pacmanLookat.x;
+                    pacman.position.z -= options.speed * pacmanLookat.z;
+                } else if (key === "KeyD" || key === "ArrowRight") {
+                    pacman.rotateY(-0.04);
+                }
+            }
+        }
+        function onDocumentWheelRolling(event){
+            if(!(camera.position.z === 0 && event.deltaY<0) && options.inSpace) {
+                camera.translateOnAxis(new THREE.Vector3(0, 0, 1), event.deltaY * 0.5);
+            }
+        }
+        function onWindowResize(){
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // ************************************************************************************************
+        function init() {
+            // init camera, scene, renderer
+            scene1 = new THREE.Scene();
+            var path = 'textures/fondS1/';
+            var f = '.jpg';
+            scene1.background = new THREE.CubeTextureLoader().load([path+'px'+f,path+'nx'+f,path+'py'+f,path+'ny'+f,path+'pz'+f,path+'nz'+f]);
+            scene2 = new THREE.Scene();
+            path = 'textures/fondS2/';
+            var cube = new THREE.CubeTextureLoader().load([path+'pz_nx_px'+f,path+'pz_nx_px'+f,path+'py'+f,path+'ny'+f,path+'pz_nx_px'+f,path+'nz'+f]);
+            scene2.background = cube;
+            camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 50000 );
+            cameraKrypton = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            gui = new dat.GUI();
+
+            //********************************************* SPACE ******************************************
+            for(var i=0; i<9 ;i++){
+                tab_p.push(new THREE.Mesh(
+                    new THREE.SphereGeometry(20,32,32),
+                    new THREE.MeshStandardMaterial({map : new THREE.TextureLoader().load("./textures/planet/P"+(i+1)+".jpg")})
+                ));
+            }
+            for(var j=0; j<9 ;j++){
+                tab_orbit.push(new THREE.Object3D());
+                tab_orbit[j].add(tab_p[j]);
+                var x = 10000;
+                tab_p[j].position.set(Math.sin(j)*x,Math.cos(j)*x,Math.sin(j)*Math.cos(j)*x*(j+1));
+                tab_orbit[j].position.set(0,0,0);
+                tab_orbit[j].scale.set(0.1,0.1,0.1);
+                var r = Math.cos(j*500)*Math.cos(j*500);
+                tab_p[j].scale.set(80*r,80*r,80*r);
+                scene1.add(tab_orbit[j]);
+            }
+
+            krypton = new THREE.Mesh(
+                new THREE.SphereGeometry(60,32,32),
+                new THREE.MeshStandardMaterial({map : new THREE.TextureLoader().load("./textures/planet/krypton.jpg")})
+            );
+            const loaderGLTF = new GLTFLoader();
+            loaderGLTF.load( "arrow.glb", function ( model ) {
+                arrow = model.scene;
+                arrow.traverse( function ( child ) {
+                    if(child.isMesh){
+                        child.geometry.computeVertexNormals();
+                    }
+                });
+                arrow.scale.set(200,200,200);
+                orbitArrow.add( arrow );
+            });
+            krypton.add(orbitArrow);
+            orbitArrow.position.set(0,150,-50);
+            var s = 250;
+            var data = new Uint8Array( 3 * s*s );
+            for ( let i = 0; i < s*s; i ++ ) {
+                const stride = i * 3;
+                data[stride] = 190;
+                data[stride+1] = 170;
+                data[stride+2] = 150;
+            }
+            anneaux = new THREE.Mesh(
+                new THREE.PlaneGeometry(s,s),
+                new THREE.ShaderMaterial({
+                    uniforms: {myTexture: { value: new THREE.DataTexture( data, s, s, THREE.RGBFormat )}},
+                    vertexShader: '' +
+                        'varying vec2 myUV;\n' +
+                        'void main() {\n' +
+                        '   gl_Position = projectionMatrix *  modelViewMatrix * vec4(position,1.0);\n'+
+                        '   myUV = uv;\n' +
+                        '}',
+                    fragmentShader: ' ' +
+                        'uniform sampler2D myTexture;\n' +
+                        'varying vec2 myUV;\n'+
+                        'void main() {\n' +
+                        '   vec4 tmp = texture2D(myTexture, myUV);\n'+
+                        '   float d = (myUV.x-0.5)*(myUV.x-0.5)+(myUV.y-0.5)*(myUV.y-0.5);\n' +
+                        '   vec4 col;\n'+
+                        '   float r = 0.1+sin(d*500.)/5.;\n'+
+                        '   float trsp = 1.+cos(d*100.*sin(d*50.))/2.;\n'+
+                        '   if(d>0.1 && d<0.25){col = vec4(0.742+r,0.665+r,0.586,1.-trsp);}else{col = vec4(0.,0.,0.,0.);}\n' +
+                        '   gl_FragColor = col;\n' +
+                        '}',
+                    side: THREE.DoubleSide,
+                    transparent: true
+                })
+            );
+
+            krypton.add(anneaux);
+            anneaux.lookAt(0,1,0);
+            s=32;
+            data = new Uint8Array( 3 * s*s );
+            for ( let i = 0; i < s*s; i ++ ) {
+                const stride = i * 3;
+                data[stride] = (options.color/(256*256))%256;
+                data[stride+1] = (options.color/256)%256;
+                data[stride+2] = options.color%256;
+            }
+            uniS = {myTexture: { value: new THREE.DataTexture( data, s, s, THREE.RGBFormat )}};
+            star = new THREE.Mesh(
+                new THREE.SphereGeometry(200,32,32),
+                new THREE.ShaderMaterial({
+                    uniforms: uniS,
+                    vertexShader: '' +
+                        'varying vec2 myUV;\n' +
+                        'void main() {\n' +
+                        '   gl_Position = projectionMatrix *  modelViewMatrix * vec4(position,1.0);\n'+
+                        '   myUV = uv;\n' +
+                        '}',
+                    fragmentShader: ' ' +
+                        'uniform sampler2D myTexture;\n' +
+                        'varying vec2 myUV;\n'+
+                        'float hash(vec2 p) {\n' +
+                        '    vec3 p3 = fract(vec3(p.xyx) * 0.13);\n' +
+                        '    p3 += dot(p3, p3.yzx + 3.333);\n' +
+                        '    return fract((p3.x + p3.y) * p3.z); \n' +
+                        '}\n' +
+                        'float noise(vec2 x) {\n' +
+                        '   vec2 i = floor(x);\n' +
+                        '   vec2 f = fract(x);\n' +
+                        '   float a = hash(i);\n' +
+                        '   float b = hash(i + vec2(1.0, 0.0));\n' +
+                        '   float c = hash(i + vec2(0.0, 1.0));\n' +
+                        '   float d = hash(i + vec2(1.0, 1.0));\n' +
+                        '   vec2 u = f * f * (3.0 - 2.0 * f);\n' +
+                        '   return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;\n' +
+                        '}\n' +
+                        'float fbm(vec2 x) {\n' +
+                        '   float v = 0.0;\n' +
+                        '   float a = 0.5;\n' +
+                        '   vec2 shift = vec2(100);\n' +
+                        '   mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));\n' +
+                        '   for (int i = 0; i < 5; ++i) {\n' +
+                        '       v += a * noise(x);\n' +
+                        '       x = rot * x * 2.0 + shift;\n' +
+                        '       a *= 0.5;\n' +
+                        '   }\n' +
+                        'return v;\n' +
+                        '}\n'+
+                        'void main() {\n' +
+                        '   vec2 x = myUV;'+
+                        '   vec4 text = texture2D(myTexture, myUV);\n'+
+                        '   vec3 tmp = text.xyz+(fbm(myUV*50.)*0.8);\n'+
+                        '   float t1 = (myUV.x-0.3)*(myUV.x-0.3)+(myUV.y-0.4)*(myUV.y-0.4);\n' +
+                        '   float t2 = (myUV.x-0.2)*(myUV.x-0.2)+(myUV.y-0.8)*(myUV.y-0.8);\n' +
+                        '   float t3 = (myUV.x-0.8)*(myUV.x-0.8)+(myUV.y-0.2)*(myUV.y-0.2);\n' +
+                        '   float t4 = (myUV.x-0.7)*(myUV.x-0.7)+(myUV.y-0.6)*(myUV.y-0.6);\n' +
+                        '   if(t1<0.01){\n' +
+                        '       tmp = (t1/0.01)*tmp;\n' +
+                        '   }else if(t2<0.004){\n' +
+                        '       tmp = (t2/0.004)*tmp;\n' +
+                        '   }else if(t3<0.002){\n' +
+                        '       tmp = (t3/0.002)*tmp;\n' +
+                        '   }else if(t4<0.007){\n' +
+                        '       tmp = (t4/0.007)*tmp;}\n' +
+                        '   gl_FragColor = vec4(tmp,1.);\n' +
+                        '}\n',
+                    side: THREE.DoubleSide
+                })
+            );
+            star.add(krypton);
+            krypton.position.set(0,0,500);
+            starLight = new THREE.PointLight(options.color)
+            star.add(starLight);
+            scene1.add(star);
+            scene1.add(new THREE.AmbientLight(ambientColor));
+
+            // soucoupe
+            new OBJLoader().load("./Spaceship.obj", function( spaceship ) {
+                spaceship.traverse( function( child ){
+                    if(child.isMesh){
+                        child.geometry.computeVertexNormals();
+                        child.material = new THREE.MeshStandardMaterial({
+                            normalMap : new THREE.TextureLoader().load( 'textures/Spaceship_texture/normal.jpg' ),
+                            roughnessMap : new THREE.TextureLoader().load( 'textures/Spaceship_texture/rough.jpg' ),
+                            metalnessMap : new THREE.TextureLoader().load( 'textures/Spaceship_texture/metalness.jpg' ),
+                            map: new THREE.TextureLoader().load( 'textures/Spaceship_texture/color.jpg' ),
+                            emissiveMap : new THREE.TextureLoader().load( 'textures/Spaceship_texture/emi.jpg' ),
+                            emissive : 0xffffff,
+                            emissiveIntensity : 10,
+                        })
+                    }
+                });
+                spaceship.scale.set(5,5,5);
+                soucoupe.add(spaceship);
+            });
+
+            camera.lookAt(0,0,-1);
+            soucoupe.lookAt(0,0,-1);
+            soucoupe.position.set(0,110,6000);
+            orbitCam.attach(camera);
+            soucoupe.attach(orbitCam);
+            camera.position.set(0,0,100);
+            orbitCam.position.set(0,0,0);
+            scene1.add(soucoupe);
+            lookat = soucoupe.getWorldDirection(new THREE.Vector3(0,0,0));
+
+            //********************************************* PLANETE ****************************************
+            var customMap = new THREE.ShaderMaterial({
+                uniforms: {myTexture: {value:cube}},
+                vertexShader: '' +
+                    'varying vec3 Normal;\n' +
+                    'varying vec3 EyeDir;\n'+
+                    'varying vec2 myUV;\n' +
+                    'void main() {\n' +
+                    '   gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);\n'+
+                    '   Normal = normalMatrix * normal;\n' +
+                    '   EyeDir = vec4(modelViewMatrix * vec4(position,1.)).xyz;\n'+
+                    '   myUV = uv;\n' +
+                    '}',
+                fragmentShader: ' ' +
+                    'varying vec3 Normal;\n' +
+                    'varying vec3 EyeDir;\n'+
+                    'uniform samplerCube myTexture;\n'+
+                    'varying vec2 myUV;\n'+
+                    'void main() {\n' +
+                    '   vec4 col;'+
+                    '   if(cos(myUV.x*200.)<=-0.98||cos(myUV.y*200.)<=-0.94){\n'+
+                    '       col = vec4(0.235,0.2745,0.785,1.);'+
+                    '   }else{\n' +
+                    '       vec3 tmp = normalize(reflect(normalize(EyeDir), normalize(Normal)));\n'+
+                    '       col = textureCube(myTexture,tmp,3.);\n' +
+                    '       col *= 0.3;}\n' +
+                    '   gl_FragColor = vec4(col.xyz,1.);\n' +
+                    '}'
+            });
+            plane = new THREE.Mesh(new THREE.PlaneGeometry(5000,5000), customMap);
+            plane.position.set(0,0,0);
+            plane.lookAt(0,1,0);
+            scene2.add(plane);
+
+            warp = new THREE.Mesh(new THREE.PlaneGeometry(50,50), new THREE.ShaderMaterial({
+                uniforms: {},
+                vertexShader: '' +
+                    'varying vec2 myUV;\n' +
+                    'void main() {\n' +
+                    '   gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);\n'+
+                    '   myUV = uv;\n' +
+                    '}',
+                fragmentShader: ' ' +
+                    'varying vec2 myUV;\n'+
+                    'void main() {\n' +
+                    '   vec2 uv = myUV;\n'+
+                    '   float dist = ((uv.x-0.5)*(uv.x-0.5)+(uv.y-0.5)*(uv.y-0.5));\n' +
+                    '   float tmp = 0.5 + 0.4*sin((atan(uv.x-0.5,uv.y-0.5) - 10.*dist)*4.0)*1.5;\n' +
+                    '   vec4 col;\n' +
+                    '   if(dist>0.25){' +
+                    '       col = vec4(0.,0.,0.,0.);' +
+                    '   }else if(dist>0.2){' +
+                    '       col = vec4(0.5,0.8,0.1,1.);' +
+                    '   }else{' +
+                    '       col = vec4(0.5*tmp,0.6,0.,1.);' +
+                    '   }\n' +
+                    '   gl_FragColor = vec4(col);\n'+
+                    '}',
+                side: THREE.DoubleSide,
+                transparent: true
+            }));
+            warp.lookAt(1,0,1);
+            warp.position.set(-300,50,-300);
+            scene2.add(warp);
+            scene2.add(new THREE.AmbientLight(0x363636));
+
+            (new THREE.FontLoader()).load( 'https://unpkg.com/three/examples/fonts/droid/droid_serif_regular.typeface.json', function ( font ) {
+                const geometry = new THREE.TextBufferGeometry( 'retour', {
+                    font: font,
+                    size: 30,
+                    height: 1,
+                    curveSegments: 10,
+                    bevelEnabled: true,
+                    bevelThickness: 1,
+                    bevelSize: 1,
+                    bevelOffset: 0,
+                    bevelSegments: 5
+                } );
+                var mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x0000ff } ) );
+                scene2.add( mesh );
+                mesh.lookAt(1,0,1);
+                mesh.position.set(-300,100,-300);
+                mesh.translateOnAxis((new THREE.Vector3(-1, 0, 1)).normalize(),50);
+                mesh.translateOnAxis((new THREE.Vector3(-1, 0, -1)).normalize(),50);
+            } );
+
+            const geometry_ghost = new THREE.BufferGeometry();
+            geometry_ghost.setAttribute( 'position', new THREE.BufferAttribute( ghost_vertices, 3 ) );
+            geometry_ghost.computeVertexNormals();
+            blinky = new THREE.Mesh( geometry_ghost, new THREE.MeshStandardMaterial( { color: 0xff0000,side: THREE.DoubleSide} ));
+            pinky = new THREE.Mesh( geometry_ghost, new THREE.MeshStandardMaterial( { color: 0xff00ff,side: THREE.DoubleSide} ));
+            inky = new THREE.Mesh( geometry_ghost, new THREE.MeshStandardMaterial( { color: 0x0000ff,side: THREE.DoubleSide} ));
+            clyde = new THREE.Mesh( geometry_ghost, new THREE.MeshStandardMaterial( { color: 0xff7f00,side: THREE.DoubleSide} ));
+            blinky.position.set(75,0,-1500);
+            pinky.position.set(225,0,-1500);
+            inky.position.set(-75,0,-1500);
+            clyde.position.set(-225,0,-1500);
+            blinky.scale.set(10,10,10);
+            pinky.scale.set(10,10,10);
+            inky.scale.set(10,10,10);
+            clyde.scale.set(10,10,10);
+
+            const eye_geometry = new THREE.CylinderGeometry( 5, 5, 2, 8 );
+            const eye_material = new THREE.ShaderMaterial({
+                uniforms: {},
+                vertexShader: '' +
+                    'varying vec2 myUV;\n' +
+                    'void main() {\n' +
+                    '   gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);\n'+
+                    '   myUV = uv;\n' +
+                    '}',
+                fragmentShader: ' ' +
+                    'varying vec2 myUV;\n'+
+                    'void main() {\n' +
+                    '   vec2 uv = myUV;\n'+
+                    '   float dist = ((uv.x-0.5)*(uv.x-0.5)+(uv.y-0.5)*(uv.y-0.5));\n' +
+                    '   vec4 col;\n' +
+                    '   if(dist>0.05){col = vec4(1.,1.,1.,1.);}else{col = vec4(0.,0.,0.,1.);}\n' +
+                    '   gl_FragColor = vec4(col);\n'+
+                    '}',
+            });
+            const R_eye_blinky = new THREE.Mesh( eye_geometry, eye_material );
+            const L_eye_blinky = new THREE.Mesh( eye_geometry, eye_material );
+            const R_eye_pinky = new THREE.Mesh( eye_geometry, eye_material );
+            const L_eye_pinky = new THREE.Mesh( eye_geometry, eye_material );
+            const R_eye_inky = new THREE.Mesh( eye_geometry, eye_material );
+            const L_eye_inky = new THREE.Mesh( eye_geometry, eye_material );
+            const R_eye_clyde = new THREE.Mesh( eye_geometry, eye_material );
+            const L_eye_clyde = new THREE.Mesh( eye_geometry, eye_material );
+            R_eye_blinky.lookAt(0,1,0);
+            L_eye_blinky.lookAt(0,1,0);
+            R_eye_pinky.lookAt(0,1,0);
+            L_eye_pinky.lookAt(0,1,0);
+            R_eye_inky.lookAt(0,1,0);
+            L_eye_inky.lookAt(0,1,0);
+            R_eye_clyde.lookAt(0,1,0);
+            L_eye_clyde.lookAt(0,1,0);
+            blinky.add( R_eye_blinky );
+            blinky.add( L_eye_blinky);
+            pinky.add(R_eye_pinky);
+            pinky.add(L_eye_pinky);
+            inky.add(R_eye_inky);
+            inky.add(L_eye_inky);
+            clyde.add(R_eye_clyde);
+            clyde.add(L_eye_clyde);
+            R_eye_blinky.scale.set(0.4,0.4,0.4);
+            L_eye_blinky.scale.set(0.4,0.4,0.4);
+            R_eye_pinky.scale.set(0.4,0.4,0.4);
+            L_eye_pinky.scale.set(0.4,0.4,0.4);
+            R_eye_inky.scale.set(0.4,0.4,0.4);
+            L_eye_inky.scale.set(0.4,0.4,0.4);
+            R_eye_clyde.scale.set(0.4,0.4,0.4);
+            L_eye_clyde.scale.set(0.4,0.4,0.4);
+            R_eye_blinky.position.set(-2,9,1);
+            L_eye_blinky.position.set(2,9,1);
+            R_eye_pinky.position.set(-2,9,1);
+            L_eye_pinky.position.set(2,9,1);
+            R_eye_inky.position.set(-2,9,1);
+            L_eye_inky.position.set(2,9,1);
+            R_eye_clyde.position.set(-2,9,1);
+            L_eye_clyde.position.set(2,9,1);
+
+            scene2.add(blinky);
+            scene2.add(pinky);
+            scene2.add(inky);
+            scene2.add(clyde);
+
+            pacman.position.set(0,50,400);
+            pacman.lookAt(0,0,-1);
+            pacman.add(cameraKrypton);
+            cameraKrypton.lookAt(0,0,-1);
+            cameraKrypton.position.set(0,0,0);
+            scene2.add(pacman);
+            //************************************************** GUI ***************************************
+            var Space = gui.addFolder("Espace");
+            var Soleil = Space.addFolder("Soleil");
+            Soleil.addColor(options,"color");
+            Space.add(options,"start_stop_rotate");
+            var Planete = gui.addFolder("Planete");
+            Planete.add(options,"speed_ghost",0,100);
+            gui.add(options,"speed",0.00,10.00);
+            gui.add(options,"changeScene");
+            //************************************************ RENDER **************************************
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+            renderer.setClearColor(ambientColor, 1.0);
+            renderer.clear();
+        }
+
+        function render(){
+            if(options.inSpace) {
+                renderer.render(scene1, camera);
+            }else{
+                renderer.render(scene2, cameraKrypton);
+            }
+        }
+
+        var frame = 0.;
+        function animate(){
+            if(options.inSpace) {
+                if(options.rotate) {
+                    star.rotateY(0.01);
+                    for(var i=0; i<9 ;i++){
+                        if(i%3===0){
+                            tab_orbit[i].rotateX(0.02);
+                        }else if(i%3===1){
+                            tab_orbit[i].rotateY(0.03);
+                        }else if(i%3===2){
+                            tab_orbit[i].rotateZ(0.05);
+                        }
+                    }
+                }
+                krypton.rotateY(0.01);
+                orbitArrow.position.set(0, 150. +Math.sin(frame)*25., -50);
+                frame+=0.05;
+                lookat = soucoupe.getWorldDirection(new THREE.Vector3(0, 0, 0));
+                if(turn){
+                    soucoupe.rotateY(-0.01 * pos[0]);
+                    soucoupe.rotateX(0.01 * pos[1]);
+                }
+                if(camView){
+                    orbitCam.rotateY(0.01 * cam[0]);
+                    orbitCam.rotateX(0.01 * cam[1]);
+                }
+                if(go){
+                    soucoupe.position.x += options.speed * lookat.x;
+                    soucoupe.position.y += options.speed * lookat.y;
+                    soucoupe.position.z += options.speed * lookat.z;
+                }
+                var tmpVec = krypton.getWorldPosition(new THREE.Vector3(0,0,0));
+                if(((soucoupe.position.x-tmpVec.x)*(soucoupe.position.x-tmpVec.x)+
+                    (soucoupe.position.y-tmpVec.y)*(soucoupe.position.y-tmpVec.y)+
+                    (soucoupe.position.z-tmpVec.z)*(soucoupe.position.z-tmpVec.z))<=1225){
+                    options.changeScene();
+                }
+                var s=32;
+                var data = new Uint8Array( 3 * s*s );
+                for ( let i = 0; i < s*s; i ++ ) {
+                    const stride = i * 3;
+                    data[stride] = (options.color/(256*256))%256;
+                    data[stride+1] = (options.color/256)%256;
+                    data[stride+2] = options.color%256;
+                }
+                uniS.myTexture.value = new THREE.DataTexture( data, s, s, THREE.RGBFormat );
+                starLight.color.set(options.color);
+            }else{
+                var warpPos = warp.getWorldPosition(new THREE.Vector3(0,0,0));
+                if(((pacman.position.x-warpPos.x)*(pacman.position.x-warpPos.x)+
+                    (pacman.position.z-warpPos.z)*(pacman.position.z-warpPos.z))<=20000){
+                    options.changeScene();
+                }
+                var list = [blinky,pinky,inky,clyde];
+                for(var i=0; i<4 ;i++){
+                    if((list[i].position.x + ghostDir[i][0]*options.speed_ghost)>1500){
+                        ghostDir[i] = [0,1];
+                        list[i].lookAt(-1500,0,-1500);
+                    }else if((list[i].position.z + ghostDir[i][1]*options.speed_ghost)>1500){
+                        ghostDir[i] = [-1,0];
+                        list[i].lookAt(1500,0,-1500);
+                    }else if((list[i].position.x + ghostDir[i][0]*options.speed_ghost)<-1500){
+                        ghostDir[i] = [0,-1];
+                        list[i].lookAt(1500,0,1500);
+                    }else if((list[i].position.z + ghostDir[i][1]*options.speed_ghost)<-1500){
+                        ghostDir[i] = [1,0];
+                        list[i].lookAt(-1500,0,1500);
+                    }
+                    list[i].position.x += ghostDir[i][0]*options.speed_ghost;
+                    list[i].position.z += ghostDir[i][1]*options.speed_ghost;
+                }
+                warp.rotateZ(-0.05);
+            }
+            requestAnimationFrame(animate);
+            render();
+        }
+        init();
+        animate();
+    </script>
+</body>
+</html>

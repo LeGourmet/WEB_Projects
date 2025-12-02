@@ -1,0 +1,128 @@
+/*********************
+* cible les tableaux *
+**********************/
+table{
+    border: solid 2px black;        /* fixe les bordures en solide de 2 pixels et noir */
+    text-align: center;             /* centre le texte */
+    border-collapse: collapse;      /* fait que les bordure du tableau se colle */
+    margin : auto;                  /* les dimentions des marge se fixe automatiquement */
+}
+
+/*************************************************************
+* cible les td première enfant du dernier tableau de la page *
+* et les th première enfant du dernier tableau de la page    *
+**************************************************************/
+h2+table td:first-child,h2+table th:first-child{
+    border-right: solid 2px black;  /* fixe la bordure droite en solide de 2 pixels noir */
+    border-bottom: solid 2px black; /* fixe la bordure du bas en solide de 2 pixels noir */
+}
+
+/********************************************************
+* cible les images décendants de p suivant un h1        *
+* et les th suivant un th du dernier tableau de la page *
+*********************************************************/
+h2+table th+th, h1+p img{
+    border: solid 2px black;        /* fixe les bordure en solide de 2 pixels en noir */
+}
+
+/**************************
+* cible les éléments h1   *
+* et les h2 suivant un ul *
+* et les p suivant un h1  *
+***************************/
+ul+h2, h1+p , h1{
+    text-align: center;             /* centre le texte */
+}
+
+/**************************************************************************
+* cible les tr premier enfant du tbody dans le premier tableau de la page *
+***************************************************************************/
+ul+table tbody tr:first-child{
+    border-bottom: solid 2px black; /* fixe la bordure droite de 2 pixels noir */
+    background:gainsboro;           /* fixe la couleur de fond en blanc gris */
+}
+
+/***********************************************************
+* cible les th du thead dans le premier tableau de la page *
+************************************************************/
+ul+table thead th{
+    background: gainsboro;          /* fixe la couleur de fond en blanc gris */
+}
+
+/***************************************************************************
+* cible les tr dernière enfant du tbody dans le premier tableau de la page *
+* et les td première enfant du tbody dans le premier tableau de la page    *
+****************************************************************************/
+ul+table tbody tr:last-child td:first-child{
+    border-right: solid 2px black;  /* fixe la bordure droite de 2 pixels noir */
+}
+
+/*******************************************************************
+* cible les tr enfants du tbody dans le premier tableau de la page *
+********************************************************************/
+ul+table tbody>tr{
+    background: white;              /* fixe la couleur de fond en blanc */
+}
+
+/************************
+* cible l'éléments body *
+*************************/
+body{
+    background: cadetblue;          /* fixe la couleur de fond en bleu */
+    margin: 0;                      /* enlève les marges */
+}
+
+/**********************************
+* cible les premiers enfants de p *
+***********************************/
+p:first-child {
+    text-align: center;             /* centre le texte */
+    background-color: orange;       /* fixe la couleur de fond en orange */
+    margin: 0;                      /* enlève les marges */
+    line-height: 100px;             /* fixe la taille de la bordure à 100 pixels */
+    border-bottom: solid 2px black; /* fixe la bordure du bas en solid de 2 pixels noir */
+}
+
+/***********************
+* cible les éléments a *
+************************/
+a{
+    color: black;                   /* fixe la couleur en noir */
+}
+
+/**************************************
+* cible les éléments p décendant de a *
+***************************************/
+p a{
+    font-size: 50px;                /* fixe la taille de l'écriture à 50 pixels */
+}
+
+/*************************************
+* cible les éléments p suivant un h2 *
+**************************************/
+h2+p{
+    margin-left: 2%;                /* décale l'élément de 2% vers la droite */
+}
+
+/*****************************************
+* cible les éléments h2 suivant de table *
+******************************************/
+table+h2{
+    border-top: black dashed 2px;   /* fixe la bordure du haut en pointillé de 2 pixels */
+}
+
+/*****************************************************************
+* cible les éléments ul suivant de h2 suivant de p suivant de h2 *
+******************************************************************/
+h2+p+h2+ul{
+    border-bottom: black dashed 2px;/* fixe la bordure du bas en pointillé de 2 pixels */
+}
+
+/************************************************************************
+* cible les ul en dessous de caractéristiques et caractéristiques aussi *
+*************************************************************************/
+ul+ul+ul, h1+p+h2+ul+ul , h1+p+h2+ul , h1+p+h2{
+    margin-left: 44%;               /* décale l'élément de 44% vers la droite */
+}
+
+/* Blanchard Allan */

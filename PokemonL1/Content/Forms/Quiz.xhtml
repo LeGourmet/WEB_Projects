@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Quiz</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="screen" title="default" href="../../Styles/FormsStyle.css"/>
+    <script type="application/javascript" src="../../Javascript/js_pokemon.js"></script>
+</head>
+<body>
+<h1>Petit quizz pokemon !</h1>
+<form id="form1" action="http://10.16.21.1/~salayran/traitement.php" method="post">
+            <fieldset>
+        <legend>Question 1 : Quel est le type de Pikachu ?</legend>
+        <p>
+            <label for="Acier">Acier </label>
+            <input id="Acier" name="q1" type="checkbox"/>
+            <label for="Norm">Normal </label>
+            <input id="Norm" name="q1" type="checkbox"/>
+            <label for="Elek">Electrique</label>
+            <input id="Elek" name="q1" type="checkbox"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Question 2 : Quelle est la faiblesse d'un Pokemon Plante contre une attaque de type Electrique ?</legend>
+        <p>
+            <label for="Faible">0.5</label>
+            <input id="Faible" name="q2" type="radio"/>
+            <label for="Base">1</label>
+            <input id="Base" name="q2" type="radio"/>
+            <label for="Super">2</label>
+            <input id="Super" name="q2" type="radio"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Question 3 : Quel est le numéro d'Abo dans le Pokedex ? </legend>
+        <p>
+            <label for="Mew">151</label>
+            <input id="Mew" name="q3" type="radio"/>
+            <label for="Abo">23</label>
+            <input id="Abo" name="q3" type="radio"/>
+            <label for="Doduo">84</label>
+            <input id="Doduo" name="q3" type="radio"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Question 4 : Mimitos est t'il un légendaire ?  ? </legend>
+        <p>
+            <label for="Oui">Oui</label>
+            <input id="Oui" name="q4" type="radio"/>
+            <label for="Non">Non</label>
+            <input id="Non" name="q4" type="radio"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Verifier les réponses</legend>
+        <button type="button" onclick="verifieQuiz()">Vérifier</button>
+        <button>Envoyer</button>
+        <button type="reset">Effacer</button>
+    </fieldset>
+</form>
+</body>
+</html>

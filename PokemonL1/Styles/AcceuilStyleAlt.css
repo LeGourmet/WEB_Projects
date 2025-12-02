@@ -1,0 +1,110 @@
+/*************************************************
+* importe les rêgles du doc CommunPagesStyle.css *
+**************************************************/
+@import url("CommunPagesStyle.css") screen;
+
+
+/* deffinition de la couleur de fond, creation des bord et alignement des text*/
+
+div[id='fst']{
+    background-color: saddlebrown;
+    border-bottom: solid 2px black;
+    text-align: center;
+}
+
+
+/* deffinition de la couleur de fond, creation des bord et alignement des text*/
+div[id='lst']{
+    background-color: #297fc8;
+    margin-left: 20% ;
+    margin-right: 20% ;
+    border: solid 2px #297fc8;
+}
+/* alignement des titre 1 dans le div lst */
+div[id='lst'] h1{
+    text-align: center;
+}
+
+
+/* ajout d'une image en fond, +difinition*/
+body{
+    background-image: url('.././Images/back.jpg'); /* image tiré de https://pokemongophilippines.wordpress.com/whosthatpokemon_1349921665_7/ */
+    background-repeat : repeat;
+    background-size : 100%;
+    margin: 0;
+}
+/* deffinition de la couleur des a */
+a{
+    color: black;
+}
+
+/* definition de la couleur de fond des case, ajout 1/2 seconde de transition, definition de la taille en px de la hauteur */
+h1+ul li, ul+ul li{
+    background-color: darkgrey;
+    border: black 1px solid;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 80%;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    width: 250px;
+    height: 17px;
+
+}
+
+/* Modification de la taille et de la couleur des liste*/
+h1+ul li:hover, ul+ul li:hover{
+    background-color: lightgray;
+    margin-right: 70%;
+    color: black;
+    width: 600px;
+    height: 17px;
+}
+
+h2+table thead tr th, h2+table tbody tr td:first-child{
+    background: darkgrey;       /* fixe le fond d'écran gris foncé */
+    font-size: 25px;            /* fixe la taille de l'écriture à 25 pixels */
+}
+
+h2+table tr td+td{
+    background: lightgray;      /* fixe le fond d'écran gris foncé */
+    font-size: 25px;            /* fixe la taille de l'écriture à 25 pixels */
+}
+
+/*****************************
+* cible tous les éléments h1 *
+******************************/
+h1{
+    font-size: 50px;            /* fixe la taille de l'écriture à 50 pixels */
+}
+
+/*****************************
+* cible tous les éléments h2 *
+******************************/
+h2{
+    font-size: 40px;            /* fixe la taille de l'écriture à 40 pixels */
+}
+
+/**********************************
+* cible tous les éléments ul et p *
+***********************************/
+ul, p{
+    font-size: 30px;            /* fixe la taille de l'écriture à 30 pixels */
+}
+
+div[id='lst'] li{
+    font-size: 25px;
+}
+
+/* margement du dernier ul en pourcentage */
+ul+ul li{
+    margin-left: 30%;
+}
+
+/*alignement de la bare de recherche au centre */
+div[id='button']{
+    text-align: center;
+}
+
+/* Angibaud Julian*/

@@ -1,0 +1,109 @@
+/*****************
+* l'élément body *
+******************/
+body{
+    margin: 0;                  /* enlève le margin de body */
+    background: darkorange;     /* fixe le background en orange sombre*/
+}
+
+/***********************************************************************
+* tous les éléments h1 décendant des éléments ayant pour classe .button *
+************************************************************************/
+.button h1{
+    margin-left: 1%;            /* fixe la marge à gauche de 1% */
+}
+
+/************************************************************************
+* tous les éléments h2 décendant des éléments ayant pour classe .button *
+*    et les élement p suivant une div d'id XML                          *
+*    et les éléments p suivant p suivant div d'id XML                   *
+*************************************************************************/
+.button h2,div[id='XML']+p,div[id='XML']+p+p{
+    margin-left: 5%;            /* fixe la marge à gauche de 5% */
+}
+
+/************************************************************************
+* tous les éléments h3 décendant des éléments ayant pour classe .button *
+*    et les élement p décendant d'une div d'id XML                      *
+*    et les éléments p décendant d'une div d'id Styles                  *
+*    et les éléments p décendant d'une div d'id Javascript              *
+*    et les éléments p décendant d'une div d'id Images                  *
+*************************************************************************/
+.button h3, div[id='XML'] p, div[id='Styles'] p,div[id='Javascript'] p,div[id='Images'] p{
+    margin-left: 10%;           /* fixe la marge à gauche de 10% */
+}
+
+/************************************************************************
+*    et les éléments p décendant d'une div d'id Collection              *
+*    et les éléments p décendant d'une div d'id Forms                   *
+*    et les éléments p décendant d'une div d'id Miscellaneous           *
+*************************************************************************/
+div[id='Collection'] p, div[id='Forms'] p,div[id='Miscellaneous'] p{
+    margin-left: 15%;           /* fixe la marge à gauche de 15% */
+}
+
+/**********************
+* les éléments button *
+***********************/
+button {
+    background-color: #008CBA;  /* fixe la couleur de fond en bleu */
+    border: none;               /* enlève les bordures */
+    color: white;               /* fixe la couleur de l'écriture en blanc */
+    padding: 10px 24px;         /* fixe les dimmentions */
+    font-size: 20px;            /* fixe la taille de l'écriture */
+    border-radius: 50%;         /* rend le boutton plus rond */
+    transition-duration: 0.4s;  /* fixe le temps de la transition au moment où la souris passe sur le boutton */
+}
+
+/*******************************************************
+* les éléments button lorsque il y a la souris dessus *
+********************************************************/
+button:hover{
+    background-color: white;    /* fixe la couleur de fond en blanc */
+    color: black;               /* fixe la couleur de l'écriture en noir */
+    border: solid 2px #008CBA; /* fixe les bordures solide à 2 pixels en bleu */
+}
+
+/************************************************************************
+*    et les éléments h1 décendant d'un élément de classe button         *
+*    et les éléments h2 décendant d'un élément de classe button         *
+*    et les éléments h3 décendant d'un élément de classe button         *
+*************************************************************************/
+.button h1, .button h2, .button h3{
+    display: inline;            /* colle les boutons aux éléments qui les précèdent */
+}
+
+/*********************
+* les éléments table *
+**********************/
+table{
+    border: solid black 2px;    /* fixe les bordures solide à 2 pixels en noir */
+    text-align: center;         /* centre l'élément dans le tableau */
+    border-collapse: collapse;  /* pour que les bordures soient fusionnées */
+    margin : auto;              /* centre automatiquement le tableau */
+}
+
+/***********************************************
+* les éléments de la première ligne du tableau *
+************************************************/
+th{
+    background: grey;           /* fixe le fond de l'élément en gris */
+    border: solid black 2px;    /* fixe les bordures solide de 2 pixels et noir */
+}
+
+/***********************
+* les cases du tableau *
+************************/
+td{
+    background: cadetblue;      /* fixe le fond de l'élément en bleu */
+    border: solid black 2px;    /* fixe les bordures solide de 2 pixels et noir */
+}
+
+/******************
+* les éléments h1 *
+*******************/
+h1{
+    text-align: center; /* centre le texte */
+}
+
+/* Blanchard Allan */

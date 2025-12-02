@@ -1,0 +1,360 @@
+html{
+    height: 100%;
+}
+
+/********************* BODY **************/
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 800px;
+    margin:0;
+    background-color: #d5dfef;
+}
+
+/******************** header *************/
+
+header{
+    margin:0;
+    background-image: url("../data/Images/Autres/banniere.png");
+    background-size: 50% 100%;
+    border-bottom: 1px solid #888;
+}
+
+.navigation{
+    display:block;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.navUl{
+    justify-content:center;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+}
+
+.navLi{
+    text-align:center;
+    padding: 6%;
+    background-color: #4e3d62;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    color :white;
+    border: 1px solid black;
+}
+
+.navLi:hover{
+    background-color: #611d99;
+    color: black;
+}
+
+.navLeft{
+    border-radius: 70% 0 0 70%;
+}
+
+.navRight{
+    border-radius: 0 70% 70% 0;
+}
+
+/********************* FOOTER ******************/
+footer{
+    justify-content: center;
+    display: flex;
+    margin: 0;
+    color: whitesmoke;
+    background-color: #1e1e1e;
+    flex-shrink: 0;
+    width: 100%;
+}
+/********************* CONTENT *****************/
+main{
+    flex: 1 0 auto;
+    box-shadow: 0 0 10px #555;
+    margin: 0 10% 0 10%;
+    background: linear-gradient(to bottom right, #1988b4, #44a4b4);
+    padding: 2% 10% 0 10%;
+}
+
+/********************* CONNECTION ****************/
+.modal {
+    display: none;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+label{
+    display:block;
+    width:150px;
+    float:left;
+    text-align: left;
+}
+
+form{
+    padding-left: 30%;
+    padding-right: 20%;
+}
+
+/* Modal Content */
+.modal-content {
+    margin: 20% auto;
+    position: relative;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 40%;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+    padding: 2px 16px;
+    background-color: #4a9cd4;
+    color: #ffffff;
+}
+
+.modal-body {
+    text-align: center;
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    text-align: center;
+    padding: 2px 16px;
+    background-color: #4a9cd4;
+    color: white;
+}
+
+/**************************** list ***************************************/
+
+/**** SEARCH ***/
+.pokedex{
+    text-align: center;
+}
+
+.search{
+    padding: 1% 20% 1% 0;
+}
+
+.buttonSearch{
+    border:2px solid #85b3c3;
+    color: black;
+    margin-bottom: 5%;
+    padding: 1% 2% 1% 2%;
+    border-radius: 60%;
+}
+
+.buttonSearch:hover{
+    background-color: #85b3c3;
+    color: white;
+}
+/*** CONTENT ***/
+
+.listAtt,.listPok{
+    justify-content:center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.attaque,.poke{
+    text-align:center;
+    background-color: lightgray;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    color: black;
+    padding: 2%;
+    margin: 0 30% 0 30%;
+    border: 1px solid black;
+}
+
+.attaque:hover,.poke:hover{
+    background-color: darkgray;
+    color: white;
+    margin: 0 20% 0 20%;
+}
+
+/********************* types *****************************/
+
+.imageType {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 100px;
+}
+
+.boxType{
+    color: black;
+    width:20%;
+    height:10%;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10%;
+    margin: 2%;
+}
+
+.result-content{
+    position: relative;
+    text-align: justify;
+    line-height: 2em;
+    background-color: #5CACEE;
+    color: black;
+    border: 1px solid #888;
+    width: 60%;
+    margin: 20% auto;
+    overflow: auto;
+}
+
+table{
+    border-collapse: collapse;
+    background-color: lightgray;
+    margin: auto auto 1% auto;
+}
+
+
+tr:first-child{
+    background-color: grey;
+    font-weight: bold;
+}
+
+tr, td{
+    border: 1px solid black;
+}
+
+.Attaque{
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 2%;
+}
+
+.result-content h1{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.result-content h2{
+    margin-left: 15%;
+    text-decoration: underline;
+}
+
+.descr, .Talents{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.General, .Nom{
+    text-align: center;
+}
+
+.Nom{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.Types{
+    margin-left: 41%;
+}
+
+.InfoGenPoke{
+    margin: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.formes ul{
+    margin-left: 25%;
+}
+
+/*********************** TCHAT ****************************************/
+.tchat-content{
+    background-color: slategrey;
+    height: 40vh;
+    overflow: auto;
+}
+.tchat{
+    position: sticky;
+    left: 20%;
+    right:20%;
+    top: 50%;
+    bottom: 0;
+    border: 2px solid black;
+}
+
+.tchat-text {
+    padding: 5%;
+}
+
+.tchat-text p{
+    margin: 0;
+    overflow: auto;
+}
+
+.inputMsg{
+    position: sticky;
+    top: 70%;
+    bottom: 0;
+    width:80%;
+    margin: 2%;
+}
+
+.tchatButton{
+    position: sticky;
+    top: 70%;
+    bottom: 0;
+}
+
+.imageTchat{
+    position: sticky;
+    top:0;
+    background-color: #1e1e1e;
+    text-align: center;
+}
+
+.buttonImgTchat{
+    background-color: #1e1e1e ;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 1%;
+    border-left: 10px solid crimson;
+    border-bottom: 10px solid crimson;
+    border-right: 10px solid #1e1e1e;
+    border-top: 10px solid #1e1e1e;
+    transform:rotate(-45deg);
+}
+
+.qui_quand{
+    color: crimson;
+    font-weight: bold;
+}
+
+.quoi{
+    color: black;
+}

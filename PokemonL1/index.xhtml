@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Accueil</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="screen" title="default" href="Styles/AcceuilStyle.css"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="alternatif" href="Styles/AcceuilStyleAlt.css"/>
+    <script type="application/javascript" src="./Javascript/js_pokemon.js"></script>
+</head>
+<body onload="Now();">
+<div id="fst">
+    <div>
+        <input id="hour" value=" " readonly="readonly" size="30"/>
+    </div>
+    <h1>
+        <img src="./Images/25_pikachu.png" alt="pikachu.png" height="100" width="100" title="https://pokemonletsgo.pokemon.com/fr-ca/" ondblclick="changeimg1()"/>
+        Accueil
+        <img src="Images/133_evoli.png" alt="evoli.png" height="100" width="100" title="https://www.pokepedia.fr/Evoli" ondblclick="changeimg2()"/>
+        <button type="button" onclick="Switch()">+</button>
+    </h1>
+    <p>Bienvenue sur notre site qui repertorie tous les pokemon de la premiere generation.</p>
+</div>
+<div id="lst">
+    <p>Les descriptions et les informations relatives aux pokemon sont tirees des sites :</p>
+    <ul>
+        <li>http://www.pokepedia.fr/Liste_des_Pokémon_de_la_première_génération (pour les 76 premiers)</li>
+        <li>http://www.pokebip.com/pokedex/4eme_generation_pokeliste_liste_des_pokemon.html (pour les 75 derniers)</li>
+    </ul>
+    <div id="button">
+        <input id="recherche" value="Rechercher" size="30" name="Rechercher" onfocus="newclearInput('recherche')" onblur="displayDefault('recherche')" onkeyup="search('recherche')"/>
+    </div>
+    <h1>Pokedex</h1>
+    <ul id="Search">
+        <li>1 : <a href="./Content/Collection/1_Bulbizarre.xhtml">Bulbizarre</a> : Il a une etrange graine plantee sur son dos...</li>
+        <li>2 : <a href="./Content/Collection/2_Herbizzare.xhtml">Herbizarre</a></li>
+        <li>3 : <a href="./Content/Collection/3_Florizarre.xhtml">Florizarre</a></li>
+        <li>4 : <a href="./Content/Collection/4_Salameche.xhtml">Salameche</a></li>
+        <li>5 : <a href="./Content/Collection/5_Reptincel.xhtml">Reptincel</a></li>
+        <li>6 : <a href="./Content/Collection/6_Dracaufeu.xhtml">Dracaufeu</a></li>
+        <li>7 : <a href="./Content/Collection/7_Carapuce.xhtml">Carapuce</a></li>
+        <li>8 : <a href="./Content/Collection/8_Carabaffe.xhtml">Carabaffe</a></li>
+        <li>9 : <a href="./Content/Collection/9_Tortank.xhtml">Tortank</a></li>
+        <li>10 : <a href="./Content/Collection/10_Chenipan.xhtml">Chenipan</a></li>
+        <li>11 : <a href="./Content/Collection/11_Chrysacier.xhtml">Chrysacier</a></li>
+        <li>12 : <a href="./Content/Collection/12_Papilusion.xhtml">Papilusion</a></li>
+        <li>13 : <a href="./Content/Collection/13_Aspicot.xhtml">Aspicot</a></li>
+        <li>14 : <a href="./Content/Collection/14_Coconfort.xhtml">Coconfort</a></li>
+        <li>15 : <a href="./Content/Collection/15_Dardargnan.xhtml">Dardargnan</a></li>
+        <li>16 : <a href="./Content/Collection/16_Roucool.xhtml">Roucoul</a></li>
+        <li>17 : <a href="./Content/Collection/17_Roucoups.xhtml">Roucoups</a></li>
+        <li>18 : <a href="./Content/Collection/18_Roucarnage.xhtml">Roucarnage</a></li>
+        <li>19 : <a href="./Content/Collection/19_Rattata.xhtml">Rattata</a></li>
+        <li>20 : <a href="./Content/Collection/20_Rattatac.xhtml">Rattatac</a></li>
+        <li>21 : <a href="./Content/Collection/21_Piafabec.xhtml">Piafabec</a></li>
+        <li>22 : <a href="./Content/Collection/22_Rapasdepic.xhtml">Rapasdepic</a></li>
+        <li>23 : <a href="./Content/Collection/23_Abo.xhtml">Abo</a></li>
+        <li>24 : <a href="./Content/Collection/24_Arbok.xhtml">Arbok</a></li>
+        <li>25 : <a href="./Content/Collection/25_Pikachu.xhtml">Pikachu</a></li>
+        <li>26 : <a href="./Content/Collection/26_Raichu.xhtml">Raichu</a></li>
+        <li>27 : <a href="./Content/Collection/27_Sabelette.xhtml">Sabelette</a></li>
+        <li>28 : <a href="./Content/Collection/28_Sablaireau.xhtml">Sablaireau</a></li>
+        <li>29 : <a href="./Content/Collection/29_Nidoran_femelle.xhtml">Nidoran femelle</a></li>
+        <li>30 : <a href="./Content/Collection/30_Nidorina.xhtml">Nidorina</a></li>
+        <li>31 : <a href="./Content/Collection/31_Nidoqueen.xhtml">Nidoqueen</a></li>
+        <li>32 : <a href="./Content/Collection/32_Nidoran_male.xhtml">Nidoran male</a></li>
+        <li>33 : <a href="./Content/Collection/33_Nidorino.xhtml">Nidorino</a></li>
+        <li>34 : <a href="./Content/Collection/34_Nidoking.xhtml">Nidoking</a></li>
+        <li>35 : <a href="./Content/Collection/35_Melofee.xhtml">Melofee</a></li>
+        <li>36 : <a href="./Content/Collection/36_Melodelfe.xhtml">Melodelfe</a></li>
+        <li>37 : <a href="./Content/Collection/37_Goupix.xhtml">Goupix</a></li>
+        <li>38 : <a href="./Content/Collection/38_Feunard.xhtml">Feunard</a></li>
+        <li>39 : <a href="./Content/Collection/39_Rondoudou.xhtml">Rondoudou</a></li>
+        <li>40 : <a href="./Content/Collection/40_Grondoudou.xhtml">Grondoudou</a></li>
+        <li>41 : <a href="./Content/Collection/41_Nosferapti.xhtml">Nosferapti</a></li>
+        <li>42 : <a href="./Content/Collection/42_Nosferalto.xhtml">Nosferalto</a></li>
+        <li>43 : <a href="./Content/Collection/43_Mystherbe.xhtml">Mystherb</a></li>
+        <li>44 : <a href="./Content/Collection/44_Ortide.xhtml">Ortide</a></li>
+        <li>45 : <a href="./Content/Collection/45_Rafflesia.xhtml">Rafflesia</a></li>
+        <li>46 : <a href="./Content/Collection/46_Paras.xhtml">Paras</a></li>
+        <li>47 : <a href="./Content/Collection/47_Parasect.xhtml">Parasect</a></li>
+        <li>48 : <a href="./Content/Collection/48_Mimitoss.xhtml">Mimitoss</a></li>
+        <li>49 : <a href="./Content/Collection/49_Aeromite.xhtml">Aeromite</a></li>
+        <li>50 : <a href="./Content/Collection/50_Taupiqueur.xhtml">Taupiqueur</a></li>
+        <li>51 : <a href="./Content/Collection/51_Triopikeur.xhtml">Triopikeur</a></li>
+        <li>52 : <a href="./Content/Collection/52_Miaouss.xhtml">Miaouss</a></li>
+        <li>53 : <a href="./Content/Collection/53_Persian.xhtml">Persian</a></li>
+        <li>54 : <a href="./Content/Collection/54_Psykokwak.xhtml">Psykokwak</a></li>
+        <li>55 : <a href="./Content/Collection/55_Akwakwak.xhtml">Akwakwak</a></li>
+        <li>56 : <a href="./Content/Collection/56_Ferosinge.xhtml">Ferosinge</a></li>
+        <li>57 : <a href="./Content/Collection/57_Colossinge.xhtml">Colossinge</a></li>
+        <li>58 : <a href="./Content/Collection/58_Caninos.xhtml">Caninos</a></li>
+        <li>59 : <a href="./Content/Collection/59_Arcanin.xhtml">Arcanin</a></li>
+        <li>60 : <a href="./Content/Collection/60_Ptitard.xhtml">Ptitard</a></li>
+        <li>61 : <a href="./Content/Collection/61_Tetarte.xhtml">Tetarte</a></li>
+        <li>62 : <a href="./Content/Collection/62_Tartard.xhtml">Tartard</a></li>
+        <li>63 : <a href="./Content/Collection/63_Abra.xhtml">Abra</a></li>
+        <li>64 : <a href="./Content/Collection/64_Kadabra.xhtml">Kadabra</a></li>
+        <li>65 : <a href="./Content/Collection/65_Alakazam.xhtml">Alakazam</a></li>
+        <li>66 : <a href="./Content/Collection/66_Machoc.xhtml">Machoc</a></li>
+        <li>67 : <a href="./Content/Collection/67_Machopeur.xhtml">Machopeur</a></li>
+        <li>68 : <a href="./Content/Collection/68_Mackogneur.xhtml">Mackogneur</a></li>
+        <li>69 : <a href="./Content/Collection/69_Chetiflor.xhtml">Chetiflor</a></li>
+        <li>70 : <a href="./Content/Collection/70_Boustiflor.xhtml">Boustiflor</a></li>
+        <li>71 : <a href="./Content/Collection/71_Empiflor.xhtml">Empiflor</a></li>
+        <li>72 : <a href="./Content/Collection/72_Tentacool.xhtml">Tentacool</a></li>
+        <li>73 : <a href="./Content/Collection/73_Tentacruel.xhtml">Tentacruel</a></li>
+        <li>74 : <a href="./Content/Collection/74_Racaillou.xhtml">Racaillou</a></li>
+        <li>75 : <a href="./Content/Collection/75_Gravalanch.xhtml">Gravalanch</a></li>
+        <li>76 : <a href="./Content/Collection/76_Grolem.xhtml">Grolem</a></li>
+        <li>77 : <a href="./Content/Collection/77_Ponyta.xhtml">Ponyta</a></li>
+        <li>78 : <a href="./Content/Collection/78_Galopa.xhtml">Galopa</a></li>
+        <li>79 : <a href="./Content/Collection/79_Ramoloss.xhtml">Ramoloss</a></li>
+        <li>80 : <a href="./Content/Collection/80_Flagadoss.xhtml">Flagadoss</a></li>
+        <li>81 : <a href="./Content/Collection/81_Magneti.xhtml">Magneti</a></li>
+        <li>82 : <a href="./Content/Collection/82_Magneton.xhtml">Magneton</a></li>
+        <li>83 : <a href="./Content/Collection/83_Canarticho.xhtml">Canarticho</a></li>
+        <li>84 : <a href="./Content/Collection/84_Doduo.xhtml">Doduo</a></li>
+        <li>85 : <a href="./Content/Collection/85_Dodrio.xhtml">Dodrio</a></li>
+        <li>86 : <a href="./Content/Collection/86_Otaria.xhtml">Otaria</a></li>
+        <li>87 : <a href="./Content/Collection/87_Lamantine.xhtml">Lamantine</a></li>
+        <li>88 : <a href="./Content/Collection/88_Tadmorv.xhtml">Tadmorv</a></li>
+        <li>89 : <a href="./Content/Collection/89_Grotadmorv.xhtml">Grotadmorv</a></li>
+        <li>90 : <a href="./Content/Collection/90_Kokiyas.xhtml">kokiyas</a></li>
+        <li>91 : <a href="./Content/Collection/91_Crustabri.xhtml">Crustabri</a></li>
+        <li>92 : <a href="./Content/Collection/92_Fantominus.xhtml">Fantominus</a></li>
+        <li>93 : <a href="./Content/Collection/93_Spectrum.xhtml">Spectrum</a></li>
+        <li>94 : <a href="./Content/Collection/94_Ectoplasma.xhtml">Ectoplasma</a></li>
+        <li>95 : <a href="./Content/Collection/95_Onix.xhtml">Onix</a></li>
+        <li>96 : <a href="./Content/Collection/96_Soporifik.xhtml">Soporifik</a></li>
+        <li>97 : <a href="./Content/Collection/97_Hypnomade.xhtml">Hypnomade</a></li>
+        <li>98 : <a href="./Content/Collection/98_Krabby.xhtml">Krabby</a></li>
+        <li>99 : <a href="./Content/Collection/99_Krabboss.xhtml">Kraboss</a></li>
+        <li>100 : <a href="./Content/Collection/100_Voltorbe.xhtml">Voltorbe</a></li>
+        <li>101 : <a href="./Content/Collection/101_Electrode.xhtml">Electrode</a></li>
+        <li>102 : <a href="./Content/Collection/102_Noeunoeuf.xhtml">Noeunoeuf</a></li>
+        <li>103 : <a href="./Content/Collection/103_Noadkoko.xhtml">Noadkoko</a></li>
+        <li>104 : <a href="./Content/Collection/104_Osselait.xhtml">Osselait</a></li>
+        <li>105 : <a href="./Content/Collection/105_Ossatueur.xhtml">Ossatueur</a></li>
+        <li>106 : <a href="./Content/Collection/106_Kicklee.xhtml">Kicklee</a></li>
+        <li>107 : <a href="./Content/Collection/107_Tygnon.xhtml">Tygnon</a></li>
+        <li>108 : <a href="./Content/Collection/108_Excelangue.xhtml">Excelangue</a></li>
+        <li>109 : <a href="./Content/Collection/109_Smogo.xhtml">Smogo</a></li>
+        <li>110 : <a href="./Content/Collection/110_Smogogo.xhtml">Smogogo</a></li>
+        <li>111 : <a href="./Content/Collection/111_Rhinocorne.xhtml">Rhinocorne</a></li>
+        <li>112 : <a href="./Content/Collection/112_Rhinoferos.xhtml">Rhinoferos</a></li>
+        <li>113 : <a href="./Content/Collection/113_Leveinard.xhtml">Leveinard</a></li>
+        <li>114 : <a href="./Content/Collection/114_Saquedeneu.xhtml">Saquedeneu</a></li>
+        <li>115 : <a href="./Content/Collection/115_Kangourex.xhtml">Kangourex</a></li>
+        <li>116 : <a href="./Content/Collection/116_Hypotrempe.xhtml">Hypotrempe</a></li>
+        <li>117 : <a href="./Content/Collection/117_Hypocean.xhtml">Hypocean</a></li>
+        <li>118 : <a href="./Content/Collection/118_Poissirene.xhtml">Poissirene</a></li>
+        <li>119 : <a href="./Content/Collection/119_Poissoroy.xhtml">Poissoroy</a></li>
+        <li>120 : <a href="./Content/Collection/120_Stari.xhtml">Stari</a></li>
+        <li>121 : <a href="./Content/Collection/121_Staross.xhtml">Staross</a></li>
+        <li>122 : <a href="./Content/Collection/122_MMime.xhtml">M. Mime</a></li>
+        <li>123 : <a href="./Content/Collection/123_Insecateur.xhtml">Insecateur</a></li>
+        <li>124 : <a href="./Content/Collection/124_Lippoutou.xhtml">Lipoutou</a></li>
+        <li>125 : <a href="./Content/Collection/125_Elektek.xhtml">Elektek</a></li>
+        <li>126 : <a href="./Content/Collection/126_Magmar.xhtml">Magmar</a></li>
+        <li>127 : <a href="./Content/Collection/127_Scarabrute.xhtml">Scarabrute</a></li>
+        <li>128 : <a href="./Content/Collection/128_Tauros.xhtml">Tauros</a></li>
+        <li>129 : <a href="./Content/Collection/129_Magicarpe.xhtml">Magicarpe</a></li>
+        <li>130 : <a href="./Content/Collection/130_Leviator.xhtml">Leviator</a></li>
+        <li>131 : <a href="./Content/Collection/131_Lokhlass.xhtml">Lokhlass</a></li>
+        <li>132 : <a href="./Content/Collection/132_Metamorph.xhtml">Metamorph</a></li>
+        <li>133 : <a href="./Content/Collection/133_Evoli.xhtml">Evoli</a></li>
+        <li>134 : <a href="./Content/Collection/134_Aquali.xhtml">Aquali</a></li>
+        <li>135 : <a href="./Content/Collection/135_Voltali.xhtml">Voltali</a></li>
+        <li>136 : <a href="./Content/Collection/136_Pyroli.xhtml">Pyroli</a></li>
+        <li>137 : <a href="./Content/Collection/137_Porygon.xhtml">Porgon</a></li>
+        <li>138 : <a href="./Content/Collection/138_Amonita.xhtml">Amonita</a></li>
+        <li>139 : <a href="./Content/Collection/139_Amonistar.xhtml">Amonistar</a></li>
+        <li>140 : <a href="./Content/Collection/140_Kabuto.xhtml">Kabuto</a></li>
+        <li>141 : <a href="./Content/Collection/141_Kabutops.xhtml">Kabutops</a></li>
+        <li>142 : <a href="./Content/Collection/142_Ptera.xhtml">Ptera</a></li>
+        <li>143 : <a href="./Content/Collection/143_Ronflex.xhtml">Ronflex</a></li>
+        <li>144 : <a href="./Content/Collection/144_Artikodin.xhtml">Artikodin</a></li>
+        <li>145 : <a href="./Content/Collection/145_Electhor.xhtml">Electhor</a></li>
+        <li>146 : <a href="./Content/Collection/146_Sulfuras.xhtml">Sulfuras</a></li>
+        <li>147 : <a href="./Content/Collection/147_Minidraco.xhtml">Minidraco</a></li>
+        <li>148 : <a href="./Content/Collection/148_Draco.xhtml">Draco</a></li>
+        <li>149 : <a href="./Content/Collection/149_Dracolosse.xhtml">Dracolosse</a></li>
+        <li>150 : <a href="./Content/Collection/150_Mewtwo.xhtml">Mewtwo</a></li>
+        <li>151 : <a href="./Content/Collection/151_Mew.xhtml">Mew</a></li>
+        <li onclick="Display('ul')">Vers les autres pages</li>
+    </ul>
+    <ul id="ul" style="display: none">
+        <li><a href="./Content/Forms/ID.xhtml">Creer un compte</a></li>
+        <li><a href="./Content/Forms/CreatPokemon.xhtml">Creer un nouveau pokemon</a></li>
+        <li><a href="./Content/Forms/Quiz.xhtml">Petit Quiz</a></li>
+        <li><a href="./Content/Miscellaneous/Plan.html">Le plan du site</a></li>
+        <li><a href="./Content/Miscellaneous/Tableau.html">Tableau synoptique</a></li>
+    </ul>
+    <p>Nos mails : <a href="mailto:allan.blanchard@etu.univ-poitiers.fr">Blanchard Allan</a> et <a href="mailto:julian.angibaud@etu.univ-poitiers.fr">Angibaud Julian</a></p>
+</div>
+
+</body>
+</html>
+
+        <!-- Blanchard Allan -->

@@ -1,0 +1,52 @@
+<!ELEMENT pokemon (name,caracteristics,description,abilitie+,weaknesses)>
+<!ATTLIST pokemon
+        ID CDATA #IMPLIED>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+        ID CDATA #IMPLIED>
+
+<!ELEMENT caracteristics EMPTY>
+<!ATTLIST caracteristics
+        numeroid CDATA #REQUIRED
+        generation(1|2|3|4|5|6|7) #REQUIRED
+        legendary (oui|non) #REQUIRED
+        firsttype (acier|combat|dragon|eau|electr|feu|glace|insect|normal|plante|poison|psy|roche|sol|spectr|tenebr|vol|fee) #REQUIRED
+        secondtype (acier|combat|dragon|eau|electr|feu|glace|insect|normal|plante|poison|psy|roche|sol|spectr|tenebr|vol|fee) #IMPLIED
+        category CDATA #IMPLIED
+        height CDATA #IMPLIED
+        weight CDATA #IMPLIED
+        gender (male-female|none) #REQUIRED
+        baby CDATA #IMPLIED
+        evolution CDATA #IMPLIED>
+
+<!ELEMENT description (#PCDATA)>
+<!ATTLIST description
+        id CDATA #IMPLIED>
+
+<!ELEMENT abilitie (#PCDATA)>
+<!ATTLIST abilitie
+        name CDATA #REQUIRED>
+
+<!ELEMENT weaknesses EMPTY>
+<!ATTLIST weaknesses
+        acier (0|1|0.5|0.25|2|4) #REQUIRED
+        combat (0|1|0.5|0.25|2|4) #REQUIRED
+        dragon (0|1|0.5|0.25|2|4) #REQUIRED
+        eau (0|1|0.5|0.25|2|4) #REQUIRED
+        electr (0|1|0.5|0.25|2|4) #REQUIRED
+        feu (0|1|0.5|0.25|2|4) #REQUIRED
+        glace (0|1|0.5|0.25|2|4) #REQUIRED
+        insect (0|1|0.5|0.25|2|4) #REQUIRED
+        normal (0|1|0.5|0.25|2|4) #REQUIRED
+        plante (0|1|0.5|0.25|2|4) #REQUIRED
+        poison (0|1|0.5|0.25|2|4) #REQUIRED
+        psy (0|1|0.5|0.25|2|4) #REQUIRED
+        roche (0|1|0.5|0.25|2|4) #REQUIRED
+        sol (0|1|0.5|0.25|2|4) #REQUIRED
+        spectr (0|1|0.5|0.25|2|4) #REQUIRED
+        tenebr (0|1|0.5|0.25|2|4) #REQUIRED
+        vol (0|1|0.5|0.25|2|4) #REQUIRED
+        fee (0|1|0.5|0.25|2|4) #REQUIRED>
+
+<!-- Angibaud Julian et Allan Blanchard -->
